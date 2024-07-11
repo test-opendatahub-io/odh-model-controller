@@ -11,8 +11,6 @@ jobs:
     steps:
       - name: Checkout PR branch
         uses: actions/checkout@v2
-        with:
-          ref: ${{ github.head_ref }}
 
       - name: Extract image tag from PR branch
         id: extract-pr
