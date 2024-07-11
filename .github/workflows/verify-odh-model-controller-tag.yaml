@@ -33,8 +33,9 @@ jobs:
             exit 1
           fi
 
-          PR_IMAGE_TAG=${{ env.PR_IMAGE_TAG }}
-          if [ "$PR_IMAGE_TAG" =~ "$EXPECTED_TAG" ]; then
+          # Check if PR_IMAGE_TAG matches EXPECTED_TAG followed by a dot and digits
+          PR_IMAGE_TAG=${{ env.PR_IMAGE_TAG }}          
+          if [[ ! "$PR_IMAGE_TAG" =~  ^"$EXPECTED_TAG"(\.[0-9]+)?$ ]]; then
             echo "Image tag mismatch! Expected '$EXPECTED_TAG' but found '$PR_IMAGE_TAG'"
             exit 1
           fi
